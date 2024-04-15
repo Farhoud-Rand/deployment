@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <!-- Registration Form -->
+            <div class="col-md-5">
+                <h2>Registration</h2>
+                <form action="/register" method="post"  class="needs-validation" novalidate> <!-- -->
+                    {% csrf_token %}
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                            placeholder="Enter your first name" required>
+                        <div class="invalid-feedback">
+                            Please provide your first name.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.first_name %}
+                        {% for error in errors.first_name %}
+                        <div>
+                            <small class="text-danger">{{ error }}</small>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- last Name -->
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                            placeholder="Enter your last name" required>
+                        <div class="invalid-feedback">
+                            Please provide your last name.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.last_name %}
+                        {% for error in errors.last_name %}
+                        <div>
+                            <small class="text-danger">{{ error }}</small>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            required>
+                        <div class="invalid-feedback">
+                            Please provide your email.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.email %}
+                        {% for error in errors.email %}
+                        <div>
+                            <small class="text-danger">{{ error }}</small>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Password should contains at last 8 characters" required>
+                        <div class="invalid-feedback">
+                            Please provide a password.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.password %}
+                        <small class="text-danger">{{ errors.password }}</small>
+                        {% endif %}
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="c_password">Confirm Password</label>
+                        <input type="password" class="form-control" id="c_password" name="c_password"
+                            placeholder="Confirm Password" required>
+                        <div class="invalid-feedback">
+                            Please confirm your password.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.c_password %}
+                        <small class="text-danger">{{ errors.c_password }}</small>
+                        {% endif %}
+                    </div>
+
+                    <!-- Birthday -->
+                    <div class="form-group">
+                        <label for="birthday">Birthday</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday" required>
+                        <div class="invalid-feedback">
+                            Please provide your birthday date.
+                        </div>
+                        <!-- For validation errors -->
+                        {% if errors.birthday %}
+                        <small class="text-danger">{{ errors.birthday }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+            <!-- Login Form -->
+            <div class="col-md-5">
+                <h2>Login</h2>
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            required>
+                        <!-- For validation errors -->
+                        {% if errors.login_email %}
+                        <small class="text-danger">{{ errors.login_email }}</small>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter your password" required>
+                        <!-- For validation errors -->
+                        {% if errors.login_password %}
+                        <small class="text-danger">{{ errors.login_password }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info">Login</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
